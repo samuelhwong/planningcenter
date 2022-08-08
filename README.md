@@ -1,2 +1,3 @@
-# planningcenteronline-api
-A javascript library for the planningcenteronline.com API
+# Planning Center Online for Node.js
+
+A Node.js library for the planningcenteronline.com API
