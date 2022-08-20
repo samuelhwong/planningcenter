@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const PLANNING_CENTER_ENDPOINT = 'https://api.planningcenteronline.com';
+const DEFAULT_TIMEOUT = 3000;
 
 /**
  * Client that calls the planningcenter API. Implements the command pattern
@@ -13,7 +14,7 @@ export class PlanningCenterClient {
     this.applicationId = applicationId;
     this.secret = secret;
     this.accessToken = accessToken;
-    this.timeout = timeout;
+    this.timeout = timeout || DEFAULT_TIMEOUT;
     if (accessToken) {
       this.createClientWithAccessToken();
     } else if (applicationId && secret) {

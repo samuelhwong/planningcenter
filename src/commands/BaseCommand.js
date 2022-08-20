@@ -11,7 +11,7 @@ export class BaseCommand {
           .toUpperCase()
           .replace('_', '')
       );
-    this.capitializeFirstLetter = str =>
+    this.capitalizeFirstLetter = str =>
       str.charAt(0).toUpperCase() + str.slice(1);
   }
   
@@ -27,7 +27,7 @@ export class BaseCommand {
     this._includesList = [];
     
     includeParams.forEach(name => {
-      this[`include${this.capitializeFirstLetter(this.snakeToCamel(name))}`] = function(enabled = true) {
+      this[`include${this.capitalizeFirstLetter(this.snakeToCamel(name))}`] = function(enabled = true) {
         const index = this._includesList.indexOf(name);
         if (enabled && index === -1) {
           // Push a new include into the list if it doesn't already exist.
@@ -54,7 +54,7 @@ export class BaseCommand {
    */
   initQueryBy(whereParams) {
     whereParams.forEach(name => {
-      this[`queryBy${this.capitializeFirstLetter(this.snakeToCamel(name))}`] = function(value) {
+      this[`queryBy${this.capitalizeFirstLetter(this.snakeToCamel(name))}`] = function(value) {
         this.params[`where[${name}]`] = value;
         return this;
       }
@@ -69,10 +69,47 @@ export class BaseCommand {
    */
   initOrderBy(orderParams) {
     orderParams.forEach(name => {
-      this[`orderBy${this.capitializeFirstLetter(this.snakeToCamel(name))}`] = function() {
+      this[`orderBy${this.capitalizeFirstLetter(this.snakeToCamel(name))}`] = function() {
         this.params['order'] = name;
       }
     })
+  }
+  
+  /**
+   * Sets how many records to return per page. Min of 1, max of 100, default 25.
+   * @param num
+   * @returns {BaseCommand}
+   */
+  paginatePerPage(num) {
+    if (num < 1 || num > 100) {
+      throw new Error(`paginate per page must be min of 1, max of 100`);
+    }
+    this.params['per_page'] = num;
+    return this;
+  }
+  
+  /**
+   * Sets the pagination offset.
+   * @param num
+   * @returns {BaseCommand}
+   */
+  paginateOffset(num) {
+    this.params['offset'] = num;
+    return this;
+  }
+  
+  /**
+   * Sets attributes into the data payload.
+   * @param attrs
+   * @returns {BaseCommand}
+   */
+  attributes(attrs) {
+    this.data = {
+      data: {
+        attributes: attrs
+      }
+    }
+    return this;
   }
   
   /**

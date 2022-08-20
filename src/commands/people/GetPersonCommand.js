@@ -3,10 +3,10 @@ import {BaseCommand} from "../BaseCommand.js";
 /**
  * Implements version: 2022-01-28
  */
-export class GetPeopleCommand extends BaseCommand {
+export class GetPersonCommand extends BaseCommand {
   constructor() {
     super();
-    this.method = 'GET'
+    this.method = 'GET';
     this.url = '/people/v2/people';
     
     const whereParams = [
