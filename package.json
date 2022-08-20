@@ -2,7 +2,7 @@
   "name": "planningcenter",
   "version": "1.0.0",
   "description": "A Node.js library for the planningcenter API",
-  "main": "index.js",
+  "main": "src/PlanningCenterClient.js",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
