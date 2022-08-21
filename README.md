@@ -24,7 +24,7 @@ let client = new PlanningCenterClient(opts);
 Then make a command and send it:
 ```javascript
 let command = new GetPersonCommand();
-let result = client.send(command);
+let result = await client.send(command);
 ```
 
 ## Advanced usage
@@ -35,7 +35,7 @@ let command = new GetPersonCommand()
     .queryByFirstName("John")
     .includeEmails()
     .orderByBirthdate();
-let result = client.send(command);
+let result = await client.send(command);
 ```
 
 The `queryByXXXX`, `includeXXXX`, and `orderByXXXX` functions match the [Planning Center API docs](https://developer.planning.center/docs/#/overview). Just change the `snake_case` parameter names to `CamelCase` and prepend with either `queryBy`, `include`, or `orderBy`.
