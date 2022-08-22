@@ -1,7 +1,7 @@
 import axios from "axios";
 import {InitializationError} from "./errors/InitializationError.js";
 import {errorBuilder} from "./errors/ErrorBuilder.js";
-import {HttpNoResponseError, HttpNoResponseError} from "./errors/HttpErrors.js";
+import {HttpNoResponseError} from "./errors/HttpErrors.js";
 
 const PLANNING_CENTER_ENDPOINT = 'https://api.planningcenteronline.com';
 const DEFAULT_TIMEOUT = 3000;
